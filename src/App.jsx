@@ -1,32 +1,26 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import GmailLeadExtractor from "./gmail-lead-extractor/gmail-lead-extractor";
+import {useDispatch} from "react-redux";
+import {addMessage} from "./redux/features/gmail_messages/gmail_message_slice";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     // Send message to content script to get search query
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      chrome.tabs.sendMessage(tabs[0].id, { action: 'getSearchQuery' }, (response) => {
-        if (response) {
-          setSearchQuery(response.query);
-        }
-      });
+    chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+      console.log('message', message);
+
+      dispatch(addMessage({
+        messageId: message.messageId,
+        messageDetails: {...message}
+      }))
+
+      // fire off the redux action..
     });
-
-    // Listen for updates from the background script
-    const handleMessage = (message) => {
-      if (message.action === 'updateQuery') {
-        setSearchQuery(message.query);
-      }
-    };
-
-    chrome.runtime.onMessage.addListener(handleMessage);
-
-    return () => {
-      chrome.runtime.onMessage.removeListener(handleMessage);
-    };
   }, []);
 
   return (

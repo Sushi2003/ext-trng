@@ -16,7 +16,7 @@
   "content_scripts": [
     {
       "js": ["src/content.js"],
-      "matches": ["https://www.google.com/*"]
+      "matches": ["https://mail.google.com/*"]
     }
   ],
   "background": {

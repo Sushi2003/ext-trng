@@ -1,0 +1,5 @@
+
+
+export const EVENT_TYPES = {
+  GMAIL_SELECT_MESSAGE: 'SELECT_GMAIL_MESSAGE'
+};

@@ -3,6 +3,7 @@ import './App.css';
 import GmailLeadExtractor from "./gmail-lead-extractor/gmail-lead-extractor";
 import {useDispatch} from "react-redux";
 import {addMessage} from "./redux/features/gmail_messages/gmail_message_slice";
+import {queryLlamaJSON} from "./llm-apis/ollama";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -19,6 +20,19 @@ function App() {
         messageDetails: {...message}
       }))
     });
+
+    // make a queryLLAMA JSON Call to verify it is working
+    (async function () {
+      try {
+        const res = await queryLlamaJSON({prompt: "Why is the sky blue?"});
+        console.log('response is ', res.data);
+      } catch (ex) {
+        console.log(":(");
+        console.log('exception:', ex);
+      }
+
+    }())
+
   }, []);
 
   return (

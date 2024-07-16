@@ -18,8 +18,6 @@ function App() {
         messageId: message.messageId,
         messageDetails: {...message}
       }))
-
-      // fire off the redux action..
     });
   }, []);
 

@@ -16,7 +16,7 @@
   "content_scripts": [
     {
       "js": ["src/content.js"],
-      "matches": ["https://mail.google.com/*"]
+      "matches": ["https://chatgpt.com/*"]
     }
   ],
   "background": {

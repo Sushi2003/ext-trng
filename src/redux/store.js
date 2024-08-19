@@ -1,10 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
 import {isDev} from "../utils/misc";
-import gmailMessageReducer from './features/gmail_messages/gmail_message_slice';
+import gmailMessageReducer from './features/OpenAi_messages/OpenAi_message_slice';
 
 const store = configureStore({
   reducer: {
-    gmailMessages: gmailMessageReducer
   },
 });
 

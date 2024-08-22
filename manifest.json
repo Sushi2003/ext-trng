@@ -5,7 +5,9 @@
   "permissions": [
     "activeTab",
     "sidePanel",
-    "scripting"
+    "scripting",
+    "debugger",
+    "tabs"
   ],
   "action": {
     "default_popup": "index.html"
